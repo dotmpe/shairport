@@ -18,7 +18,8 @@
 
 NAME=shairport
 DAEMON="/usr/local/bin/shairport.pl"
-DAEMON_ARGS=""
+#DAEMON_ARGS=""
+read DAEMON_ARGS < /etc/shairport
 PIDFILE=/var/run/$NAME.pid
 
 [ -x $binary ] || exit 0
@@ -28,7 +29,7 @@ RETVAL=0
 start() {
     echo -n "Starting shairport: "
     start-stop-daemon --start --quiet --pidfile "$PIDFILE" \
-                      --exec "$DAEMON" -b --oknodo -- $DAEMON_ARGS
+                      --exec "$DAEMON" -b --oknodo -- $DAEMON_ARGS -d -w $PIDFILE
     log_end_msg $?
 }
 

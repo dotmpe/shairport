@@ -22,6 +22,11 @@ install: hairtunes shairport
 	install -D -m 0755 hairtunes $(DESTDIR)$(prefix)/bin/hairtunes
 	install -D -m 0755 shairport.pl $(DESTDIR)$(prefix)/bin/shairport.pl
 	install -D -m 0755 shairport $(DESTDIR)$(prefix)/bin/shairport
+	#if test ! -e "/etc/shairport";\
+	#then \
+	#	install -D -m 0644 shairport.default /etc/shairport; \
+	#fi
+	#install -D -m 0755 shairport.init.sample /etc/init.d/shairport
 
 .PHONY: all clean install
 
